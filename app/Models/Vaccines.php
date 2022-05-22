@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Regional extends Model
+class Vaccines extends Model
 {
     use HasFactory;
 
     protected $hidden = [
-       'created_at',
-       'updated_at'
+        'id',
+        'created_at',
+        'updated_at',
     ];
 
-    public function users(){
-        return $this->hasMany(User::class);
+    public function spot()
+    {
+        return $this->hasOne(Spot::class);
     }
-   
 }

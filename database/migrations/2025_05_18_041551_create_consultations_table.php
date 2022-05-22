@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
-            $table->enum('status',['pending','accepted','rejected']);
+            $table->enum('status',['pending','accepted','rejected'])->default('pending');
             $table->string('disease_history')->nullable();
             $table->string('current_symptoms')->nullable();
             $table->string('doctor_notes')->nullable();
             $table->string('doctor')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

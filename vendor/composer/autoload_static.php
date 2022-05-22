@@ -178,8 +178,8 @@ class ComposerStaticInitf862f9163b5e37e397ec3755b923cc39
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -335,8 +335,8 @@ class ComposerStaticInitf862f9163b5e37e397ec3755b923cc39
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -509,9 +509,8 @@ class ComposerStaticInitf862f9163b5e37e397ec3755b923cc39
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
         'App\\Http\\Controllers\\API\\ConsultationController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/ConsultationController.php',
+        'App\\Http\\Controllers\\API\\SpotController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/SpotController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\RegionalController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegionalController.php',
-        'App\\Http\\Controllers\\SpotController' => __DIR__ . '/../..' . '/app/Http/Controllers/SpotController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -524,6 +523,7 @@ class ComposerStaticInitf862f9163b5e37e397ec3755b923cc39
         'App\\Models\\Consultation' => __DIR__ . '/../..' . '/app/Models/Consultation.php',
         'App\\Models\\Spot' => __DIR__ . '/../..' . '/app/Models/Spot.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Vaccines' => __DIR__ . '/../..' . '/app/Models/Vaccines.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

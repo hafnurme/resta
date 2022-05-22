@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class AuthController extends Controller
             'gender' => 'required',
             'address' => 'required|string|max:200',
             'password' => 'required|string|min:6',
-            'id_regional' => 'required',
+            'regional_id' => 'required',
         ]);
 
         $user = User::create([
@@ -30,7 +31,7 @@ class AuthController extends Controller
             'gender' => $request->gender,
             'address' => $request->address,
             'password' => Hash::make($request->password),
-            'id_regional' => $request->id_regional
+            'regional_id' => $request->regional_id
         ]);
 
         return response()->json([
@@ -40,26 +41,33 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'id_card_number' => 'required|string|min:16',
-            'password' => 'required|string|min:6'
-        ]);
+        try {
 
-        if (!Auth::attempt($request->only('id_card_number', 'password'))) {
+            $request->validate([
+                'id_card_number' => 'required|string|min:16',
+                'password' => 'required|string|min:6'
+            ]);
+
+            if (!Auth::attempt($request->only('id_card_number', 'password'))) {
+                return response()->json([
+                    'message' => 'Unauthorized User'
+                ], 401);
+            }
+
+            $user = User::with('regional')->where('id_card_number', $request->id_card_number)->firstOrFail();
+            $token = $user->createToken('auth-sanctum', ['*'], $request->id_card_number)->plainTextToken;
+
             return response()->json([
-                'message' => 'Unauthorized'
-            ] , 401);
+                'name' => $user->name,
+                'born-date' => $user->born_date,
+                'gender' => $user->gender,
+                'address' => $user->address,
+                'token' => $token,
+                'regional' => $user->regional,
+            ]);
+        } catch (Exception $e) {
+            return response()->json($e);
         }
-
-        $user = User::where('id_card_number', $request->id_card_number)->firstOrFail();
-        $token = $user->createToken('auth-sanctum',['*'],$request->id_card_number)->plainTextToken;
-
-        return response()->json([
-            'name' => $user->name,
-            'born-date' => $user->born_date,
-            'address' => $user->address,
-            'token' => $token,
-        ]);
     }
 
     public function logout(Request $request)
@@ -67,7 +75,7 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json([
-            'message' => 'You have successfully logged out!'
+            'message' => 'You have successfully logged out!',
         ]);
     }
 }

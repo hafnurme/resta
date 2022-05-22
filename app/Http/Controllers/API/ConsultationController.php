@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ConsultationController extends Controller
 {
-    public function makeconsule(Request $request)
+    public function makeConsule(Request $request)
     {
         $request->validate([
             'disease_history' => 'required|string|max:255',
@@ -17,23 +17,22 @@ class ConsultationController extends Controller
 
         $consultation = Consultation::create([
             'disease_history' => $request->disease_history,
-            'current_symptoms' => $request->current_symptoms
+            'current_symptoms' => $request->current_symptoms,
+            'user_id' => $request->user()->id
         ]);
 
         return  response()->json([
-            'id' => $consultation->id,
-            'disease_history' => $consultation->disease_history,
-            'current_symptoms' => $consultation->current_symptoms,
-            'doctor_notes' => $consultation->doctor_notes,
-            'message'=> 'Request Consultation sent successfull'
+            'message'=> 'Request consultation sent successfull'
         ]);
     }
+
     public function consulecond(Request $request)
     {
-        $consultation = Consultation::all();
+        $consultation = Consultation::with('user')->get();
 
         return  response()->json([
-            'data' => $consultation
+            'consultations' => $consultation,
         ]);
     }
+    
 }

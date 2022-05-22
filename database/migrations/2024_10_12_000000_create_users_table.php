@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('spots', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('id_card_number')->unique();
             $table->string('name');
+            $table->date('born_date');
+            $table->enum('gender', ['male', 'female']);
             $table->string('address');
-            $table->enum('serve',[1,2,3]);
-            $table->integer('capacity');
+            $table->string('password');
+            $table->foreignId('regional_id')->constrained();
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spots');
+        Schema::dropIfExists('users');
     }
 };

@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
-            $table->string('id_card_number')->unique();
-            $table->string('name');
-            $table->date('born_date');
-            $table->enum('gender', ['male', 'female']);
-            $table->string('address');
-            $table->string('password');
-            $table->integer('id_regional');
+            $table->boolean('Sinovac');
+            $table->boolean('AstraZennecca');
+            $table->boolean('Moderna');
+            $table->boolean('Pfizer');
+            $table->boolean('Sinnopharm');
+            $table->integer('count');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('vaccines');
     }
 };

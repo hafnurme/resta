@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ConsultationController;
+use App\Http\Controllers\API\SpotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,10 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::group(['middleware' => ['auth:sanctum']], function(){
-        Route::post('/consultations',[ConsultationController::class,'makeconsule']);
+        Route::post('/consultations',[ConsultationController::class,'makeConsule']);
         Route::get('/consultations',[ConsultationController::class,'consulecond']);
+        Route::get('/spots',[SpotController::class,'getVaccinesSpot']);
+        Route::get('/spots/{id}',[SpotController::class,'spotDetail']);
     });
 
 });
